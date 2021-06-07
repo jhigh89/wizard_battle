@@ -14,10 +14,6 @@ def print_header():
 
 def game_loop():
 
-    creatures = [
-
-    ]
-    
     name = input('What is your name, brave adventurer? \n >>> ')
     hero_choices = random.choice(['Wizard', 'Knight', 'Rogue', 'Warrior'])
     
@@ -33,6 +29,10 @@ def game_loop():
     print(f"You spawned in as a level {hero.level} {hero_choices} with {hero.hp} hp")
 
     while True:
+
+        spawned_creature = creatures.random_creature_picker()
+
+        print(f"As you strolled through the forest, a wild {spawned_creature.type} by the name of {spawned_creature.name} appeared.")
 
         cmd = input('Do you [a]ttack, [r]un away, or [l]ook around? (Enter "x" to close the game.) \n >>> ').lower()
         if cmd == 'a':

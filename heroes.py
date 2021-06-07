@@ -1,5 +1,7 @@
 import random
 
+# contains heroes available
+
 class Knight:
     def __init__(self, name):
         self.name = name
