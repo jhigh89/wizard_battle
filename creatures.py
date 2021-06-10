@@ -2,92 +2,122 @@ import random
 from random_name import fantasy_name
 
 # contains creature classes
+class Creature:
+    def __init__(self,name):
+        self.name = name
+    def defend(self,def_power,attack_value):
+        '''
+        The creature's defense method. Takes a def_power(int) and attack_value
+        variable to roll.
+        '''
+        defense = random.randint(1,def_power)
+        attack = attack_value
+        if attack_value <= def_power:
+            print("The creature was able to defend against the attack!")
+            defended = True
+        else:
+            defended = False
+        return defended
 
-class Dragon:
+class Dragon(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Dragon'
         self.level = random.randint(25,100)
+        self.def_power = self.level
         self.hp = self.level * 5
         self.xp = self.hp
 
-class Rat:
+class Rat(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Rat'
         self.level = random.randint(1,3)
+        self.def_power = self.level
         self.hp = self.level
         self.xp = self.level
 
-class Bird:
+class Bird(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Bird'
         self.level = random.randint(1,5)
+        self.def_power = self.level
         self.hp = self.level
         self.xp = self.level
 
-class Orc:
+class Orc(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Orc'
         self.level = random.randint(5,15)
+        self.def_power = self.level
         self.hp = self.level * 2
         self.xp = self.hp
 
-class Troll:
+class Troll(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Troll'
         self.level = random.randint(15,30)
+        self.def_power = self.level
         self.hp = self.level * 6
         self.xp = self.hp
 
-class Polymorph:
+class Polymorph(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Polymorph'
         self.level = 1
+        if self.level == 1:
+            self.def_power = 1
+        else:
+            self.def_power = int(self.level * .5)
         self.hp = self.level
         self.xp = self.hp * 5
 
-class Ghost:
+class Ghost(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Ghost'
         self.level = random.randint(15,35)
+        self.def_power = self.level * 2
         self.hp = self.level * .5
         self.xp = self.level
 
-class Demon:
+class Demon(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Demon'
         self.level = random.randint(55,75)
+        self.def_power = self.level
         self.hp = self.level * 3
         self.xp = self.hp
 
-class Giant:
+class Giant(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Giant'
         self.level = random.randint(55,85)
+        self.def_power = self.level
         self.hp = self.level * 4.5
         self.xp = self.hp
 
-class Cat:
+class Cat(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Cat'
         self.level = random.randint(10,20)
+        self.def_power = int(self.level * .6)
         self.hp = self.level
         self.xp = self.hp
 
-class Dog:
+class Dog(Creature):
     def __init__(self):
         self.name = fantasy_name()
         self.type = 'Dog'
         self.level = random.randint(10,20)
+        self.def_power = int(self.level * .6)
         self.hp = self.level
         self.xp = self.hp
 

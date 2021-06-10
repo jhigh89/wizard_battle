@@ -7,9 +7,9 @@ def main():
     game_loop()
 
 def print_header():
-    print('-------------------')
-    print('------Wizard-------')
-    print('-------------------')
+    print('\n-/-\-/-\--/-\-/-\--/-\-/-\--/-\-/-\--/-\-/-\-')
+    print('-/-\-/-\------Roguelike RPG Lite-----/-\-/-\-')
+    print('-/-\-/-\--/-\-/-\--/-\-/-\--/-\-/-\--/-\-/-\-')
     print()
 
 def game_loop():
@@ -27,34 +27,63 @@ def game_loop():
     else:
         hero = heroes.Warrior(name)
 
-    print(f"You spawned in as a level {hero.level} {hero_choices} with {hero.hp} hp")
+    print(f"You spawned in as a level {hero.level} {hero_choices} with {hero.hp} hp.")
     print()
+
+    creatures_defeated = 0
 
     while True:
 
         spawned_creature = creatures.random_creature_picker()
+        if spawned_creature.type == "Polymorph":
+            spawned_creature.level == hero.level
 
-        print(f"As you strolled through the forest, a wild {spawned_creature.type} by the name of {spawned_creature.name} appeared in front of you.")
+        print(f"As you walk through the dungeon, a wild {spawned_creature.type} by the name of {spawned_creature.name} appears in front of you.")
         print()
         print()
-        cmd = input(f'Do you [a]ttack the {spawned_creature.type}, [r]un away, or [l]ook around for another creature? (Enter "x" to close the game.) \n >>> ').lower()
-        if cmd == 'a':
-            creature_defeated = False
+        cmd = input(f'Do you [f]ight the {spawned_creature.type} or [l]ook around for another creature? (Enter "x" to close the game.) \n >>> ').lower()
+        if cmd == 'f':
+            battle_finished = False
             print()
-            while creature_defeated == False:
-                attack = hero.attack(hero.power,hero.crit_chance,hero.accuracy)
-                print(f"You attack the {spawned_creature.type} and do {attack} damage.")
-                spawned_creature.hp = spawned_creature.hp - attack
-                if spawned_creature.hp <= 0:
-                    print(f"You defeated the {spawned_creature.type} and gained {spawned_creature.xp} XP!")
+            print('-/-\-/-\--/-\-/-\--/-\-/-\--/-\-/-\--/-\-/-\-')
+            print('------------------F-I-G-H-T------------------')
+            print('-\-/-\-/--\-/-\-/--\-/-\-/--\-/-\-/--\-/-\-/-\n')
+            while battle_finished == False:
+                battle_menu = input("[A]ttack \n[D]efend \n[S]pecial \n[R]un \n\n >>>").lower()
+                if battle_menu == 'a': 
                     print()
-                    creature_defeated = True
-                    hero.xp = hero.xp + spawned_creature.xp
-        elif cmd == 'r':
-            print('chose chicken')
+                    attack = hero.attack(hero.power,hero.crit_chance,hero.accuracy)
+                    defend = spawned_creature.defend(spawned_creature.def_power,attack)
+                    if defend != True:
+                        print(f"You attack the {spawned_creature.type} and do {attack} damage.")
+                        spawned_creature.hp = spawned_creature.hp - attack
+                    else:
+                        print(f"{spawned_creature.name} seems unphased by your attack!")
+                    if spawned_creature.hp <= 0:
+                        print(f"You defeated the {spawned_creature.type} and gained {spawned_creature.xp} XP!\n")
+                        print()
+                        hero.xp = hero.xp + spawned_creature.xp
+                        creatures_defeated += 1
+                        battle_finished = True
+                    else:
+                        print(f"The creature has {spawned_creature.hp} hp left.")
+                    continue
+                if battle_menu == 'd':
+                    print('Defense coming soon :)\n')
+                    continue
+                if battle_menu == 's':
+                    print('You can achieve anything you set your mind to. :)\n')
+                    continue
+                if battle_menu == 'r':
+                    print('You chose to run. Probably a good idea!\n')
+                    battle_finished = True
+                else:
+                    print('\nYou momentarily forget what you are doing as you chose an option outside of your battle options!')
+
         elif cmd == 'l':
-            print('chose daydream')
+            print('You avoid the gaze of the creature and turn down another hallway.')
         elif cmd == 'x':
+            print(f'You defeated {creatures_defeated} creatures on this run!')
             print('Chose real life. Cya around!')
             return False
         else:
