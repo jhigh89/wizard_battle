@@ -31,9 +31,11 @@ def game_loop():
     print()
 
     creatures_defeated = 0
+    died = False
+    quit_game = False
 
-    while True:
-
+    while quit_game == False and died == False:
+        
         spawned_creature = creatures.random_creature_picker()
         if spawned_creature.type == "Polymorph":
             spawned_creature.level == hero.level
@@ -69,7 +71,13 @@ def game_loop():
                         print(f"The creature has {spawned_creature.hp} hp left.")
                     continue
                 if battle_menu == 'd':
-                    print('Defense coming soon :)\n')
+                    hero_defend = hero.defend(hero.def_power,spawned_creature.power,spawned_creature.accuracy)
+                    print(hero_defend)
+                    hero.hp = hero.hp - hero_defend[1]
+                    if hero.hp <= 0:
+                        print(f'You died. We will forever honor your bravery! You defeated {creatures_defeated} creatures this run.')
+                        died = True
+                        battle_finished = True
                     continue
                 if battle_menu == 's':
                     print('You can achieve anything you set your mind to. :)\n')
@@ -83,9 +91,10 @@ def game_loop():
         elif cmd == 'l':
             print('You avoid the gaze of the creature and turn down another hallway.')
         elif cmd == 'x':
+            quit_game = True
             print(f'You defeated {creatures_defeated} creatures on this run!')
             print('Chose real life. Cya around!')
-            return False
+            return quit_game
         else:
             print('Huh? In all my years of adventuring, I\'ve never heard a command like that...')
 

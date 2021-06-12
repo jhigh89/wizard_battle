@@ -24,6 +24,8 @@ class Dragon(Creature):
         self.name = fantasy_name()
         self.type = 'Dragon'
         self.level = random.randint(25,100)
+        self.power = self.level * 3
+        self.accuracy = 80
         self.def_power = self.level
         self.hp = self.level * 5
         self.xp = self.hp
@@ -33,6 +35,8 @@ class Rat(Creature):
         self.name = fantasy_name()
         self.type = 'Rat'
         self.level = random.randint(1,3)
+        self.power = self.level
+        self.accuracy = 95
         self.def_power = self.level
         self.hp = self.level
         self.xp = self.level
@@ -42,6 +46,8 @@ class Bird(Creature):
         self.name = fantasy_name()
         self.type = 'Bird'
         self.level = random.randint(1,5)
+        self.power = self.level
+        self.accuracy = 95
         self.def_power = self.level
         self.hp = self.level
         self.xp = self.level
@@ -51,6 +57,8 @@ class Orc(Creature):
         self.name = fantasy_name()
         self.type = 'Orc'
         self.level = random.randint(5,15)
+        self.power = self.level * 2
+        self.accuracy = 70
         self.def_power = self.level
         self.hp = self.level * 2
         self.xp = self.hp
@@ -60,6 +68,8 @@ class Troll(Creature):
         self.name = fantasy_name()
         self.type = 'Troll'
         self.level = random.randint(15,30)
+        self.power = self.level
+        self.accuracy = 65
         self.def_power = self.level
         self.hp = self.level * 6
         self.xp = self.hp
@@ -69,6 +79,8 @@ class Polymorph(Creature):
         self.name = fantasy_name()
         self.type = 'Polymorph'
         self.level = 1
+        self.power = self.level
+        self.accuracy = 80
         if self.level == 1:
             self.def_power = 1
         else:
@@ -81,6 +93,8 @@ class Ghost(Creature):
         self.name = fantasy_name()
         self.type = 'Ghost'
         self.level = random.randint(15,35)
+        self.power = self.level
+        self.accuracy = 80
         self.def_power = self.level * 2
         self.hp = self.level * .5
         self.xp = self.level
@@ -90,6 +104,8 @@ class Demon(Creature):
         self.name = fantasy_name()
         self.type = 'Demon'
         self.level = random.randint(55,75)
+        self.power = self.level
+        self.accuracy = 85
         self.def_power = self.level
         self.hp = self.level * 3
         self.xp = self.hp
@@ -99,6 +115,8 @@ class Giant(Creature):
         self.name = fantasy_name()
         self.type = 'Giant'
         self.level = random.randint(55,85)
+        self.power = self.level * 3
+        self.accuracy = 25
         self.def_power = self.level
         self.hp = self.level * 4.5
         self.xp = self.hp
@@ -108,6 +126,8 @@ class Cat(Creature):
         self.name = fantasy_name()
         self.type = 'Cat'
         self.level = random.randint(10,20)
+        self.power = self.level
+        self.accuracy = 85
         self.def_power = int(self.level * .6)
         self.hp = self.level
         self.xp = self.hp
@@ -117,6 +137,8 @@ class Dog(Creature):
         self.name = fantasy_name()
         self.type = 'Dog'
         self.level = random.randint(10,20)
+        self.power = self.level
+        self.accuracy = 85
         self.def_power = int(self.level * .6)
         self.hp = self.level
         self.xp = self.hp
