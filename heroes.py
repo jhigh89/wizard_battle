@@ -58,6 +58,16 @@ class Knight(Hero):
         self.accuracy = 80
         self.hp = random.randint(250,300)
 
+    def special(self):
+        '''
+        Knight's special. Prays to a higher power for health.
+        '''
+        health = random.randint(35,45)
+        print(f'The knight reaches their hand up to the heaven\'s above. A sudden surge of energy courses through their body and heals them for {health} hp!')
+        self.hp += health
+        print(f'Total HP: {self.hp}')
+        print()
+
 class Wizard(Hero):
     def __init__(self, name):
         self.name = name
@@ -68,6 +78,15 @@ class Wizard(Hero):
         self.crit_chance = 4
         self.accuracy = 70
         self.hp = random.randint(50,100)
+
+    def special(self):
+        '''
+        Wizard's special. Incinerate foes with a fireball.
+        '''
+        fireball = random.randint(55,75)
+        print('With a quick flick of their wrist, the wizard blasted out a fireball at the creature.')
+        print()
+        return fireball
 
 class Rogue(Hero):
     def __init__(self, name):
@@ -80,6 +99,21 @@ class Rogue(Hero):
         self.accuracy = 95
         self.hp = random.randint(75,100)
 
+    def special(self):
+        '''
+        Rogue's special. Has a chance to instantly kill any foe.
+        '''
+        execute_chance = random.randint(1,100)
+        if execute_chance >= 45:
+            print('The rogue was able to quietly sneak behind the creature and identified a weak spot. With one mighty thrust, they defeated the creature!')
+            execute = True
+            print()
+        else:
+            print('The creature was able to see the rogue coming. It looks like a sneak attack won\'t be possible!')
+            execute = False
+            print()
+        return execute
+
 class Warrior(Hero):
     def __init__(self, name):
         self.name = name
@@ -90,3 +124,12 @@ class Warrior(Hero):
         self.crit_chance = 10
         self.accuracy = 90
         self.hp = random.randint(150,200)
+
+    def special(self):
+        '''
+        Warrior's special. The warrior goes into a blind rage increasing his attack at the cost of his defensive power.
+        '''
+        self.power += 5
+        self.def_power -= 5
+        print('The warrior works into a furious rage! ')
+        print()
